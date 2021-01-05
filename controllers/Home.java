@@ -87,10 +87,12 @@ public class Home {
     }
 
     public void playTimer() {
+        container.getStyleClass().add("playing");
         mTimeline.play();
     }
 
     public void pauseTimer() {
+        container.getStyleClass().remove("playing");
         mTimeline.pause();
     }
 
@@ -111,5 +113,17 @@ public class Home {
     public void handleRestart(ActionEvent actionEvent) {
         prepareAttempt(AttemptKind.FOCUS);
         playTimer();
+    }
+    
+    public void handlePlay(ActionEvent actionEvent) {
+        if (mCurrentAttempt == null) {
+            handleRestart(actionEvent);
+        } else {
+            playTimer();
+        }
+    }
+
+    public void handlePause(ActionEvent actionEvent) {
+        pauseTimer();
     }
 }
